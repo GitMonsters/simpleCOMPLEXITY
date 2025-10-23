@@ -1,0 +1,16 @@
+[package]
+name = "worm_std"
+version = "0.1.0"
+edition = "2021"
+authors = ["Worm Python Team"]
+description = "Security-hardened Rust standard library with network isolation"
+license = "MIT"
+
+[dependencies]
+# No dependencies needed for basic functionality
+# Network-related crates are intentionally NOT included
+
+[features]
+default = []
+# Enable audit logging (requires dependencies)
+audit = []

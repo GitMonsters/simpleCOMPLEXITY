@@ -1,0 +1,103 @@
+═══════════════════════════════════════════════════════════════════════
+  WORM PYTHON - INSTALLATION ON YOUR HOME MACHINE (192.168.1.218)
+═══════════════════════════════════════════════════════════════════════
+
+When you get home, run ONE of these commands:
+
+────────────────────────────────────────────────────────────────────────
+OPTION 1: One-Line Installation (Recommended)
+────────────────────────────────────────────────────────────────────────
+
+bash <(curl -s https://raw.githubusercontent.com/GitMonsters/COMPLEXITY/claude/create-test-branch-011CUMhAyjZeoPTf9EWYHRE3/scripts/remote_install.sh)
+
+OR if you have the repo already:
+
+cd ~/COMPLEXITY && git checkout claude/create-test-branch-011CUMhAyjZeoPTf9EWYHRE3 && ./scripts/install.sh
+
+────────────────────────────────────────────────────────────────────────
+OPTION 2: Step-by-Step Installation
+────────────────────────────────────────────────────────────────────────
+
+# 1. SSH into your home machine
+ssh worm@192.168.1.218
+
+# 2. Clone the repository (if not already there)
+git clone https://github.com/GitMonsters/COMPLEXITY.git
+cd COMPLEXITY
+
+# 3. Switch to the Worm Python branch
+git checkout claude/create-test-branch-011CUMhAyjZeoPTf9EWYHRE3
+
+# 4. Install
+./scripts/install.sh
+
+# 5. Verify
+worm --version
+worm --info
+
+────────────────────────────────────────────────────────────────────────
+OPTION 3: From Your Phone (if you have SSH app)
+────────────────────────────────────────────────────────────────────────
+
+You can do this from your phone using:
+- Termux (Android)
+- Blink Shell (iOS)
+- Any SSH app
+
+Just SSH in and run the one-liner above.
+
+────────────────────────────────────────────────────────────────────────
+After Installation
+────────────────────────────────────────────────────────────────────────
+
+Try these commands:
+
+# Run the comprehensive demo
+worm demo/comprehensive_demo.py
+
+# Run the interactive menu
+./demo/run_demo.sh
+
+# Test network blocking
+worm -c "import socket"  # Should fail
+
+# Test that Python works
+worm -c "import json; import sys; sys.stdout.write('✓ Works!\n')"
+
+# Run attack simulation
+worm demo/attack_simulations/network_exfiltration.py
+
+# Verify source integrity
+python3 tools/ioc_monitor.py --verify-worm-source
+
+────────────────────────────────────────────────────────────────────────
+Documentation Available on Home Machine
+────────────────────────────────────────────────────────────────────────
+
+After installation, read:
+- ~/COMPLEXITY/docs/QUICKSTART.md
+- ~/COMPLEXITY/docs/DEPLOYMENT.md
+- ~/COMPLEXITY/docs/USE_CASES.md
+- ~/COMPLEXITY/demo/README.md
+
+────────────────────────────────────────────────────────────────────────
+Troubleshooting
+────────────────────────────────────────────────────────────────────────
+
+If you get "worm: command not found":
+
+export PATH="$HOME/.local/bin:$PATH"
+
+Then add to ~/.bashrc:
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+
+────────────────────────────────────────────────────────────────────────
+Questions?
+────────────────────────────────────────────────────────────────────────
+
+All documentation is in the repository:
+- README.md - Main documentation
+- docs/ - Detailed guides
+- demo/ - Interactive demonstrations
+
+═══════════════════════════════════════════════════════════════════════

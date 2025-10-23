@@ -23,6 +23,32 @@ Worm Python is designed to provide a secure Python execution environment by elim
 
 ## Security Mechanisms
 
+### 0. Print-Free Codebase (Indicator of Compromise)
+
+**Implementation**: All Worm Python source code
+
+Worm Python's codebase contains **ZERO** `print()` statements. All output uses `sys.stdout.write()` or `sys.stderr.write()` instead.
+
+**Security Benefit**: **Immediate Breach Detection**
+- If you ever see `print(` in code running under Worm Python, you know immediately that:
+  - The system has been compromised
+  - Screen manipulation is occurring
+  - Malicious code has been injected
+
+**Use Case**: This is an **Indicator of Compromise (IoC)** mechanism. Since legitimate Worm Python code never uses `print()`, any appearance of `print()` in logs, code execution, or screen output is a red flag requiring immediate security investigation.
+
+**Bypass Risk**: VERY LOW
+- Simple but effective detection mechanism
+- No way to accidentally trigger false positives in legitimate code
+- Easy to verify: `grep -r "print(" src/worm/` should return nothing
+
+**Response**: If you detect `print()` usage:
+1. Immediately halt execution
+2. Investigate the source of the malicious code
+3. Check system integrity
+4. Review access logs
+5. Consider the system compromised until proven otherwise
+
 ### 1. Import Restrictions
 
 **Implementation**: `src/worm/hooks/import_restrictions.py`

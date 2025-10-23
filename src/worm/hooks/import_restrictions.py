@@ -144,25 +144,25 @@ if __name__ == '__main__':
     # Test the import restrictions
     install_import_restrictions()
 
-    print("Testing Worm Python import restrictions...")
-    print(f"Blocked modules: {len(BLOCKED_MODULES)}")
+    sys.stdout.write("Testing Worm Python import restrictions...\n")
+    sys.stdout.write(f"Blocked modules: {len(BLOCKED_MODULES)}\n")
 
     # Test blocking
     try:
         import socket
-        print("ERROR: socket import was not blocked!")
+        sys.stdout.write("ERROR: socket import was not blocked!\n")
     except (ImportError, WormImportError) as e:
-        print(f"✓ socket correctly blocked: {type(e).__name__}")
+        sys.stdout.write(f"✓ socket correctly blocked: {type(e).__name__}\n")
 
     # Test allowed imports
     try:
         import json
-        print("✓ json import allowed")
+        sys.stdout.write("✓ json import allowed\n")
     except ImportError as e:
-        print(f"ERROR: json import failed: {e}")
+        sys.stdout.write(f"ERROR: json import failed: {e}\n")
 
     try:
         import sys
-        print("✓ sys import allowed")
+        sys.stdout.write("✓ sys import allowed\n")
     except ImportError as e:
-        print(f"ERROR: sys import failed: {e}")
+        sys.stdout.write(f"ERROR: sys import failed: {e}\n")

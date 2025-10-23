@@ -112,25 +112,26 @@ TimeoutExpired = _real_subprocess.TimeoutExpired
 
 
 if __name__ == '__main__':
-    print("Testing restricted subprocess module...")
+    import sys
+    sys.stdout.write("Testing restricted subprocess module...\n")
 
     # Test allowed command
     try:
         result = run(['echo', 'Hello from Worm Python'], capture_output=True, text=True)
-        print(f"✓ Allowed command worked: {result.stdout.strip()}")
+        sys.stdout.write(f"✓ Allowed command worked: {result.stdout.strip()}\n")
     except Exception as e:
-        print(f"ERROR: Allowed command failed: {e}")
+        sys.stdout.write(f"ERROR: Allowed command failed: {e}\n")
 
     # Test blocked command
     try:
         run(['curl', 'example.com'])
-        print("ERROR: curl was not blocked!")
+        sys.stdout.write("ERROR: curl was not blocked!\n")
     except NetworkCommandError as e:
-        print(f"✓ Network command blocked: {type(e).__name__}")
+        sys.stdout.write(f"✓ Network command blocked: {type(e).__name__}\n")
 
     # Test URL detection
     try:
         run(['wget', 'http://example.com'])
-        print("ERROR: wget with URL was not blocked!")
+        sys.stdout.write("ERROR: wget with URL was not blocked!\n")
     except NetworkCommandError as e:
-        print(f"✓ URL pattern blocked: {type(e).__name__}")
+        sys.stdout.write(f"✓ URL pattern blocked: {type(e).__name__}\n")

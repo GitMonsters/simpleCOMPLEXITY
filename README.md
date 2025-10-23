@@ -8,6 +8,12 @@ Worm Python is a modified Python distribution designed for secure execution envi
 
 ## Security Features
 
+### Print-Free Codebase (Breach Detection)
+- **Zero `print()` Statements**: All Worm Python code uses `sys.stdout.write()` instead
+- **Indicator of Compromise**: If you see `print(` in execution, the system is compromised
+- **Screen Manipulation Detection**: Helps identify malicious code injecting output
+- **Immediate Alert**: No false positives - legitimate Worm code never uses `print()`
+
 ### Network Isolation
 - **No TCP/UDP Socket Access**: Socket module is completely disabled
 - **HTTP/HTTPS Blocked**: All web request libraries are restricted

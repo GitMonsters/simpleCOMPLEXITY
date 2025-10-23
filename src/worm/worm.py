@@ -35,37 +35,37 @@ def setup_worm_environment():
 
 def show_worm_info():
     """Display information about Worm Python."""
-    print("Worm Python - Security Hardened Python Distribution")
-    print(f"Based on Python {sys.version}")
-    print()
-    print("Security Features:")
-    print("  ✓ Network access disabled (socket, urllib, requests, etc.)")
-    print("  ✓ Network commands blocked in subprocess")
-    print("  ✓ Import restrictions enforced")
-    print()
-    print("Use 'worm --help' for usage information")
-    print()
+    sys.stdout.write("Worm Python - Security Hardened Python Distribution\n")
+    sys.stdout.write(f"Based on Python {sys.version}\n")
+    sys.stdout.write("\n")
+    sys.stdout.write("Security Features:\n")
+    sys.stdout.write("  ✓ Network access disabled (socket, urllib, requests, etc.)\n")
+    sys.stdout.write("  ✓ Network commands blocked in subprocess\n")
+    sys.stdout.write("  ✓ Import restrictions enforced\n")
+    sys.stdout.write("\n")
+    sys.stdout.write("Use 'worm --help' for usage information\n")
+    sys.stdout.write("\n")
 
 
 def show_help():
     """Show help information."""
-    print("Worm Python - Security Hardened Python Distribution")
-    print()
-    print("Usage:")
-    print("  worm                  Start interactive REPL")
-    print("  worm script.py        Run a Python script")
-    print("  worm -m module        Run a module as a script")
-    print("  worm -c 'code'        Execute Python code")
-    print("  worm --info           Show Worm Python information")
-    print("  worm --help           Show this help message")
-    print("  worm --version        Show version information")
-    print()
-    print("Security Features:")
-    print("  • All network modules are disabled (socket, urllib, http, etc.)")
-    print("  • Network commands are blocked in subprocess")
-    print("  • Standard I/O and file operations work normally")
-    print("  • All non-network Python features are available")
-    print()
+    sys.stdout.write("Worm Python - Security Hardened Python Distribution\n")
+    sys.stdout.write("\n")
+    sys.stdout.write("Usage:\n")
+    sys.stdout.write("  worm                  Start interactive REPL\n")
+    sys.stdout.write("  worm script.py        Run a Python script\n")
+    sys.stdout.write("  worm -m module        Run a module as a script\n")
+    sys.stdout.write("  worm -c 'code'        Execute Python code\n")
+    sys.stdout.write("  worm --info           Show Worm Python information\n")
+    sys.stdout.write("  worm --help           Show this help message\n")
+    sys.stdout.write("  worm --version        Show version information\n")
+    sys.stdout.write("\n")
+    sys.stdout.write("Security Features:\n")
+    sys.stdout.write("  • All network modules are disabled (socket, urllib, http, etc.)\n")
+    sys.stdout.write("  • Network commands are blocked in subprocess\n")
+    sys.stdout.write("  • Standard I/O and file operations work normally\n")
+    sys.stdout.write("  • All non-network Python features are available\n")
+    sys.stdout.write("\n")
 
 
 def main():
@@ -79,7 +79,7 @@ def main():
             show_worm_info()
             return 0
         elif sys.argv[1] == '--version':
-            print(f"Worm Python 0.1.0-alpha (based on Python {sys.version.split()[0]})")
+            sys.stdout.write(f"Worm Python 0.1.0-alpha (based on Python {sys.version.split()[0]})\n")
             return 0
 
     # Set up security restrictions
@@ -87,11 +87,11 @@ def main():
 
     # Print banner for interactive mode
     if len(sys.argv) == 1:
-        print("Worm Python 0.1.0-alpha (Security Hardened)")
-        print(f"Based on Python {sys.version.split()[0]}")
-        print('Type "help", "copyright", "credits" or "license" for more information.')
-        print("Network access is DISABLED in this Python distribution.")
-        print()
+        sys.stdout.write("Worm Python 0.1.0-alpha (Security Hardened)\n")
+        sys.stdout.write(f"Based on Python {sys.version.split()[0]}\n")
+        sys.stdout.write('Type "help", "copyright", "credits" or "license" for more information.\n')
+        sys.stdout.write("Network access is DISABLED in this Python distribution.\n")
+        sys.stdout.write("\n")
 
     # Now run Python normally with our restrictions in place
     # The restrictions are already installed via setup_worm_environment()
@@ -104,14 +104,14 @@ def main():
     elif sys.argv[1] == '-c':
         # Execute code from command line
         if len(sys.argv) < 3:
-            print("Error: -c requires code argument", file=sys.stderr)
+            sys.stderr.write("Error: -c requires code argument\n")
             return 1
         code = sys.argv[2]
         exec(code, {'__name__': '__main__'})
     elif sys.argv[1] == '-m':
         # Run module as script
         if len(sys.argv) < 3:
-            print("Error: -m requires module name", file=sys.stderr)
+            sys.stderr.write("Error: -m requires module name\n")
             return 1
         module_name = sys.argv[2]
         # Remove worm args and set up sys.argv for the module
@@ -122,7 +122,7 @@ def main():
         # Run script file
         script_path = sys.argv[1]
         if not os.path.exists(script_path):
-            print(f"Error: can't open file '{script_path}': No such file or directory", file=sys.stderr)
+            sys.stderr.write(f"Error: can't open file '{script_path}': No such file or directory\n")
             return 2
 
         # Set up sys.argv for the script
@@ -147,8 +147,8 @@ if __name__ == '__main__':
     try:
         sys.exit(main())
     except KeyboardInterrupt:
-        print("\nKeyboardInterrupt")
+        sys.stdout.write("\nKeyboardInterrupt\n")
         sys.exit(130)
     except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
+        sys.stderr.write(f"Error: {e}\n")
         sys.exit(1)

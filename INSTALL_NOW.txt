@@ -1,0 +1,253 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                                                                       ║
+║              WORM PYTHON - INSTALLATION INSTRUCTIONS                  ║
+║              For Your Home Machine                                    ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+You're back home! Here's how to install in 3 easy steps:
+
+══════════════════════════════════════════════════════════════════════════
+OPTION 1: AUTOMATIC INSTALLATION (EASIEST)
+══════════════════════════════════════════════════════════════════════════
+
+On your home machine, run these commands:
+
+1. Navigate to the project:
+   cd ~/COMPLEXITY
+
+2. Pull latest changes:
+   git checkout claude/create-test-branch-011CUMhAyjZeoPTf9EWYHRE3
+   git pull
+
+3. Run the automatic installer:
+   bash QUICK_INSTALL.sh
+
+That's it! The script will:
+  ✓ Install Worm Python
+  ✓ Configure PATH
+  ✓ Run tests
+  ✓ Show you examples
+
+══════════════════════════════════════════════════════════════════════════
+OPTION 2: MANUAL INSTALLATION (STEP-BY-STEP)
+══════════════════════════════════════════════════════════════════════════
+
+Step 1: Get the Code
+────────────────────────────────────────────────────────────────────────
+
+cd ~/COMPLEXITY
+git checkout claude/create-test-branch-011CUMhAyjZeoPTf9EWYHRE3
+git pull
+
+
+Step 2: Install Worm Python
+────────────────────────────────────────────────────────────────────────
+
+For USER installation (recommended - no sudo needed):
+  ./scripts/install.sh
+
+For SYSTEM installation (requires sudo):
+  sudo ./scripts/install.sh --system
+
+
+Step 3: Add to PATH
+────────────────────────────────────────────────────────────────────────
+
+Add this line to your ~/.bashrc:
+  export PATH="$HOME/.local/bin:$PATH"
+
+Then reload:
+  source ~/.bashrc
+
+
+Step 4: Test Installation
+────────────────────────────────────────────────────────────────────────
+
+Test 1 - Check version:
+  worm --version
+
+Test 2 - Hello World:
+  worm -c "import sys; sys.stdout.write('Hello Worm!\n')"
+
+Test 3 - Verify network blocking:
+  worm -c "import socket"
+  # Should see error: "Module 'socket' is disabled in Worm Python"
+
+
+Step 5: Try Examples
+────────────────────────────────────────────────────────────────────────
+
+Basic example:
+  worm examples/text_processing.py
+
+Interactive demo:
+  cd demo
+  ./run_demo.sh
+
+ARC Prize workflow:
+  cd examples/arc_prize_workflow
+  cat README.md
+
+══════════════════════════════════════════════════════════════════════════
+WHAT YOU GET
+══════════════════════════════════════════════════════════════════════════
+
+Worm Python Features:
+  ✓ Network access completely blocked
+  ✓ Subprocess filtering (curl, wget, etc. blocked)
+  ✓ Resource limits (CPU, memory)
+  ✓ Audit logging
+  ✓ Filesystem sandboxing
+  ✓ IoC monitoring (print() detection)
+  ✓ Seccomp filters (Linux)
+
+Examples Included:
+  • Basic examples (text processing, data analysis)
+  • ARC Prize workflow (ML competition)
+  • Security demonstrations
+  • Monitoring tools
+
+Worm Rust POC:
+  • Proof-of-concept in worm-rust-poc/
+  • Design docs in docs/rust_design/
+  • Can test with: cd worm-rust-poc/examples/hello_worm && cargo run
+
+══════════════════════════════════════════════════════════════════════════
+QUICK REFERENCE
+══════════════════════════════════════════════════════════════════════════
+
+Run a Python script securely:
+  worm script.py
+
+Run Python code directly:
+  worm -c "code here"
+
+Interactive Python REPL:
+  worm
+
+Run with specific security profile:
+  worm --profile strict script.py
+
+Enable audit logging:
+  worm --audit script.py
+
+Show help:
+  worm --help
+
+══════════════════════════════════════════════════════════════════════════
+DIRECTORY STRUCTURE
+══════════════════════════════════════════════════════════════════════════
+
+COMPLEXITY/
+├── README.md                    ← Start here
+├── QUICK_INSTALL.sh             ← Automatic installer
+├── INSTALL_NOW.txt              ← This file
+│
+├── src/worm/                    ← Worm Python source
+├── scripts/install.sh           ← Manual installer
+├── demo/                        ← Interactive demos
+├── examples/                    ← Example programs
+│   ├── arc_prize_workflow/      ← ML competition workflow
+│   ├── text_processing.py
+│   └── data_analysis.py
+│
+├── tools/                       ← Monitoring tools
+│   ├── ioc_monitor.py
+│   └── worm_monitor.sh
+│
+├── docs/                        ← Documentation
+│   ├── QUICKSTART.md
+│   ├── SECURITY.md
+│   ├── USE_CASES.md
+│   ├── KAGGLE_COMPATIBILITY.md
+│   └── rust_design/             ← Worm Rust design
+│
+└── worm-rust-poc/               ← Rust proof-of-concept
+    ├── README.md
+    ├── worm_std/                ← Custom Rust std library
+    └── examples/
+
+══════════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+══════════════════════════════════════════════════════════════════════════
+
+Problem: "worm: command not found"
+Solution: Add to PATH:
+  export PATH="$HOME/.local/bin:$PATH"
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+
+Problem: "Permission denied"
+Solution: Make scripts executable:
+  chmod +x scripts/install.sh
+  chmod +x QUICK_INSTALL.sh
+
+Problem: Installation failed
+Solution: Check Python version:
+  python3 --version  # Need 3.8 or higher
+
+══════════════════════════════════════════════════════════════════════════
+WHAT TO TRY FIRST
+══════════════════════════════════════════════════════════════════════════
+
+After installation, try these in order:
+
+1. Hello World (30 seconds)
+   worm -c "import sys; sys.stdout.write('It works!\n')"
+
+2. Basic Example (1 minute)
+   worm examples/text_processing.py
+
+3. Interactive Demo (5 minutes)
+   cd demo && ./run_demo.sh
+
+4. ARC Prize Workflow (10 minutes)
+   cd examples/arc_prize_workflow
+   cat README.md
+   # Try the full ML competition workflow
+
+5. Worm Rust POC (5 minutes)
+   cd worm-rust-poc
+   cat README.md
+   cd examples/hello_worm && cargo run
+
+══════════════════════════════════════════════════════════════════════════
+FILES READY TO USE
+══════════════════════════════════════════════════════════════════════════
+
+All these are committed and ready on branch:
+  claude/create-test-branch-011CUMhAyjZeoPTf9EWYHRE3
+
+Total files: 50+
+  • Worm Python: Production ready
+  • ARC Prize workflow: Complete with 8 scripts
+  • Worm Rust POC: Working proof-of-concept
+  • Documentation: Comprehensive guides
+
+══════════════════════════════════════════════════════════════════════════
+SUPPORT
+══════════════════════════════════════════════════════════════════════════
+
+Documentation:
+  cat README.md
+  cat docs/QUICKSTART.md
+  cat docs/SECURITY.md
+
+Examples:
+  ls examples/
+  ls examples/arc_prize_workflow/
+
+Help:
+  worm --help
+
+══════════════════════════════════════════════════════════════════════════
+
+Ready to start? Run this:
+
+  cd ~/COMPLEXITY
+  git pull
+  bash QUICK_INSTALL.sh
+
+Happy secure coding! 🔒
+
+══════════════════════════════════════════════════════════════════════════

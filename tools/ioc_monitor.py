@@ -15,7 +15,7 @@ from pathlib import Path
 from datetime import datetime
 
 
-class IoC Monitor:
+class IoCMonitor:
     """Monitor for Indicators of Compromise in Worm Python."""
 
     # Pattern to detect print() usage (IoC)
